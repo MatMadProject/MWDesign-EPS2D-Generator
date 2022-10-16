@@ -16,7 +16,7 @@ import java.util.List;
 
 public class MWDesign extends Application {
 
-    public static String title = "MWDesign v1.0.0-SNAPSHOT";
+    public static String title = "MWDesign v1.1.0";
     List<Corner> cornerList = Arrays.asList(
             new Corner("Oparcie", Type.NK1),
             new Corner("Siedzisko", Type.NK1),
@@ -89,10 +89,10 @@ public class MWDesign extends Application {
         controller = loader.<ChooseController>getController();
         controller.loadListeners();
 
-        TreeItem<String> rootNode = new TreeItem<String>("Modele");
+        TreeItem<String> rootNode = new TreeItem("Modele");
         rootNode.setExpanded(true);
         for (Corner corner : cornerList) {
-            TreeItem<String> empLeaf = new TreeItem<String>(corner.getName());
+            TreeItem<String> empLeaf = new TreeItem(corner.getName());
             empLeaf.setExpanded(false);
             boolean found = false;
             for (TreeItem<String> depNode : rootNode.getChildren()) {

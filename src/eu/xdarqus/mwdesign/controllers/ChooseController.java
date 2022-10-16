@@ -3,8 +3,10 @@ package eu.xdarqus.mwdesign.controllers;
 import eu.xdarqus.mwdesign.MWDesign;
 import eu.xdarqus.mwdesign.calls.TreeViewCallImpl;
 import eu.xdarqus.mwdesign.epstwod.EPS2DGenerator;
-import eu.xdarqus.mwdesign.models.Generate;
+import eu.xdarqus.mwdesign.models.FurnitureModel;
+import eu.xdarqus.mwdesign.models.FurnitureModelSplitter;
 import eu.xdarqus.mwdesign.models.Type;
+import eu.xdarqus.mwdesign.models.ValueChangeListener;
 import javafx.beans.binding.Bindings;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -21,9 +23,26 @@ import javafx.util.Callback;
 
 import java.io.*;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 
 public class ChooseController implements Initializable {
+
+    public TableView<FurnitureModel> modelList;
+    public ComboBox<Type> comboBoxModel;
+    public TextField nameModel;
+    public TextField valueA;
+    public TextField valueB;
+    public TextField valueC;
+    public TextField valueD;
+    public TextField valueE;
+    public TextField valueF;
+    public TextField valueG;
+    public TextField valueH;
+    public TextField valueI;
+    public TextField valueJ;
+    public TextField valueK;
+    public TextField valueL;
 
     @FXML
     private TreeView<String> modelsTreeView;
@@ -35,13 +54,15 @@ public class ChooseController implements Initializable {
     private Text ModelAndType;
 
     @FXML
-    private TableView<Generate> generateList;
+    private TableView<FurnitureModel> generateList;
 
     @FXML
     private Button add, chooseFile, generate;
 
     @FXML
-    private TableColumn<Generate, String> Model, Typ, A1, B1, C1, D1, E1, F1, G1, H1, I1, J1, K1, L1;
+    private TableColumn<FurnitureModel, String> Model, Typ, A1, B1, C1, D1, E1, F1, G1, H1, I1, J1, K1, L1,
+    columnModel, columnName, columnA, columnB, columnC, columnD, columnE, columnF, columnG, columnH, columnI,
+            columnJ, columnK, columnL;
 
     @FXML
     private CheckBox przetnijCheckBox;
@@ -49,7 +70,7 @@ public class ChooseController implements Initializable {
     private File file;
     public String name;
     public Type model;
-    ObservableList<Generate> generateObservableList = FXCollections.observableArrayList();
+    ObservableList<FurnitureModel> generateObservableList = FXCollections.observableArrayList();
 
     public void loadCorners(TreeItem<String> treeItem) {
         modelsTreeView.setRoot(treeItem);
@@ -168,7 +189,7 @@ public class ChooseController implements Initializable {
                 alert.show();
             }
             for(int i = 0; i < count1; i++) {
-                Generate generate = new Generate(model.toString(), name, A.getText(), B.getText(), C.getText(), D.getText(), E.getText(), F.getText(), G.getText(), H.getText(), I.getText(), J.getText(), K.getText(), L.getText(), rozszerz1, przetnijCheckBox.isSelected());
+                FurnitureModel generate = new FurnitureModel(model.toString(), name, A.getText(), B.getText(), C.getText(), D.getText(), E.getText(), F.getText(), G.getText(), H.getText(), I.getText(), J.getText(), K.getText(), L.getText(), rozszerz1, przetnijCheckBox.isSelected());
                 generateObservableList.add(generate);
             }
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -209,7 +230,7 @@ public class ChooseController implements Initializable {
                 if (file == null) return;
                 try {
                     EPS2DGenerator eps2DGenerator = new EPS2DGenerator(new FileOutputStream(file));
-                    for (Generate gg : generateList.getItems()) {
+                    for (FurnitureModel gg : generateList.getItems()) {
                         float a,b,c,d,e,f,g,h,i,j,k,l = 0f;
                         float addC = 0f;
                         float addD = 0f;
@@ -251,10 +272,10 @@ public class ChooseController implements Initializable {
             }
         });
 
-        generateList.setRowFactory(new Callback<TableView<Generate>, TableRow<Generate>>() {
+        generateList.setRowFactory(new Callback<TableView<FurnitureModel>, TableRow<FurnitureModel>>() {
             @Override
-            public TableRow<Generate> call(TableView<Generate> tableView) {
-                final TableRow<Generate> row = new TableRow<>();
+            public TableRow<FurnitureModel> call(TableView<FurnitureModel> tableView) {
+                final TableRow<FurnitureModel> row = new TableRow<>();
                 final ContextMenu contextMenu = new ContextMenu();
                 final MenuItem removeMenuItem = new MenuItem("Usun");
                 removeMenuItem.setOnAction(new EventHandler<ActionEvent>() {
@@ -448,5 +469,160 @@ public class ChooseController implements Initializable {
         J1.setCellValueFactory(cellData -> cellData.getValue().j1Property());
         K1.setCellValueFactory(cellData -> cellData.getValue().k1Property());
         L1.setCellValueFactory(cellData -> cellData.getValue().l1Property());
+        comboBoxModel.setItems(FXCollections.observableArrayList(Arrays.asList(Type.values())));
+        setValueTextFieldsListener();
+        setCellValueFactoryOfModelList();
+    }
+
+    ObservableList<FurnitureModel> modelObservableList = FXCollections.observableArrayList();
+    public void addNewModel(ActionEvent event) {
+        modelObservableList.add(getFurnitureModelFromForm());
+        updateModelList();
+    }
+
+    public void saveToFile() {
+        FileChooser fileChooser = new FileChooser();
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Model List (*.mll)", "*.mll");
+        fileChooser.getExtensionFilters().add(extFilter);
+        File fileToSaveModelList = fileChooser.showSaveDialog(MWDesign.stage);
+
+        if(fileToSaveModelList == null) return;
+        else{
+            FileWriter writer = null;
+            try {
+                writer = new FileWriter(fileToSaveModelList);
+                BufferedWriter bufferedWriter = new BufferedWriter(writer);
+
+                for(FurnitureModel furnitureModel : modelObservableList){
+                    FurnitureModelSplitter splitter = new FurnitureModelSplitter(furnitureModel);
+                    bufferedWriter.write(splitter.getSplittedFurnitureModel());
+                    bufferedWriter.newLine();
+                }
+                bufferedWriter.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(MWDesign.title);
+        alert.setHeaderText("Zapisano model do pliku");
+        alert.setContentText(fileToSaveModelList.getName());
+        alert.show();
+    }
+
+    public void loadFromFile(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Model List (*.mll)", "*.mll");
+        fileChooser.getExtensionFilters().add(extFilter);
+        File fileToLoadModelList = fileChooser.showOpenDialog(MWDesign.stage);
+
+        if(fileToLoadModelList == null) return;
+        else{
+            modelObservableList.clear();
+            FileReader reader = null;
+            try {
+                reader = new FileReader(fileToLoadModelList);
+                BufferedReader bufferedReader = new BufferedReader(reader);
+                String line;
+                FurnitureModelSplitter splitter = new FurnitureModelSplitter();
+
+                while ((line = bufferedReader.readLine()) != null)
+                    modelObservableList.add(splitter.fuseSplittedFurnitureModel(line));
+
+                reader.close();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        updateModelList();
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(MWDesign.title);
+        alert.setHeaderText("Wczytano model z pliku");
+        alert.setContentText(fileToLoadModelList.getName());
+        alert.show();
+    }
+
+    private void updateModelList(){
+        modelList.setItems(modelObservableList);
+    }
+    private FurnitureModel getFurnitureModelFromForm(){
+        String model = null;
+        String name = null;
+
+        if(comboBoxModel.getValue() != null)
+            model = comboBoxModel.getValue().name();
+
+        if(!nameModel.getText().isEmpty())
+            name = nameModel.getText();
+
+
+        String a = valueA.getText();
+        String b = valueB.getText();
+        String c = valueC.getText();
+        String d = valueD.getText();
+        String e = valueE.getText();
+        String f = valueF.getText();
+        String g = valueG.getText();
+        String h = valueH.getText();
+        String i = valueI.getText();
+        String j = valueJ.getText();
+        String k = valueK.getText();
+        String l = valueL.getText();
+
+        FurnitureModel furnitureModel = new FurnitureModel(
+                model,
+                name,
+                a,
+                b,
+                c,
+                d,
+                e,
+                f,
+                g,
+                h,
+                i,
+                j,
+                k,
+                l
+        );
+
+        return furnitureModel;
+    }
+
+    private void setValueTextFieldsListener(){
+        valueA.textProperty().addListener(new ValueChangeListener(6));
+        valueB.textProperty().addListener(new ValueChangeListener(6));
+        valueC.textProperty().addListener(new ValueChangeListener(6));
+        valueD.textProperty().addListener(new ValueChangeListener(6));
+        valueE.textProperty().addListener(new ValueChangeListener(6));
+        valueF.textProperty().addListener(new ValueChangeListener(6));
+        valueG.textProperty().addListener(new ValueChangeListener(6));
+        valueH.textProperty().addListener(new ValueChangeListener(6));
+        valueI.textProperty().addListener(new ValueChangeListener(6));
+        valueJ.textProperty().addListener(new ValueChangeListener(6));
+        valueK.textProperty().addListener(new ValueChangeListener(6));
+        valueL.textProperty().addListener(new ValueChangeListener(6));
+    }
+
+    private void setCellValueFactoryOfModelList(){
+        columnModel.setCellValueFactory(cellData -> cellData.getValue().modelProperty());
+        columnName.setCellValueFactory(cellData -> cellData.getValue().typProperty());
+        columnA.setCellValueFactory(cellData -> cellData.getValue().a1Property());
+        columnB.setCellValueFactory(cellData -> cellData.getValue().b1Property());
+        columnC.setCellValueFactory(cellData -> cellData.getValue().c1Property());
+        columnD.setCellValueFactory(cellData -> cellData.getValue().d1Property());
+        columnE.setCellValueFactory(cellData -> cellData.getValue().e1Property());
+        columnF.setCellValueFactory(cellData -> cellData.getValue().f1Property());
+        columnG.setCellValueFactory(cellData -> cellData.getValue().g1Property());
+        columnH.setCellValueFactory(cellData -> cellData.getValue().h1Property());
+        columnI.setCellValueFactory(cellData -> cellData.getValue().i1Property());
+        columnJ.setCellValueFactory(cellData -> cellData.getValue().j1Property());
+        columnK.setCellValueFactory(cellData -> cellData.getValue().k1Property());
+        columnL.setCellValueFactory(cellData -> cellData.getValue().l1Property());
     }
 }
