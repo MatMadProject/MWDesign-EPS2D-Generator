@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TreeTableColumn?>
+<?import javafx.scene.control.TreeTableView?>
+<?import javafx.scene.control.TreeView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.geometry.Insets?>
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/1.8.0" fx:controller="eu.xdarqus.mwdesign.controllers.ChooseController">
+   <tabs>
+      <Tab text="Choose">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
+                     <left>
+                        <TreeView fx:id="modelsTreeView" prefHeight="664.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+                     </left>
+                     <center>
+                        <GridPane BorderPane.alignment="CENTER">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <Text disable="true" strokeType="OUTSIDE" strokeWidth="0.0" text="A" textAlignment="CENTER" wrappingWidth="85.13671875" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.rowSpan="2" GridPane.valignment="TOP" GridPane.vgrow="NEVER">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Text>
+                              <TextField disable="true" alignment="CENTER" prefHeight="44.0" prefWidth="33.0" fx:id="A">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </TextField>
+                              <Text disable="true" layoutX="17.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="B" textAlignment="CENTER" wrappingWidth="85.13671875" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.valignment="TOP" GridPane.vgrow="NEVER">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Text>
+                              <TextField disable="true" alignment="CENTER" layoutX="10.0" layoutY="35.0" prefHeight="33.0" prefWidth="100.0" GridPane.columnIndex="1" fx:id="B">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </TextField>
+                              <Text disable="true" strokeType="OUTSIDE" strokeWidth="0.0" text="C" textAlignment="CENTER" wrappingWidth="85.13671875" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.valignment="TOP" GridPane.vgrow="NEVER">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Text>
+                              <TextField disable="true" alignment="CENTER" prefHeight="33.0" prefWidth="100.0" GridPane.columnIndex="2" fx:id="C">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </TextField>
+                              <Text disable="true" strokeType="OUTSIDE" strokeWidth="0.0" text="D" textAlignment="CENTER" wrappingWidth="85.13671875" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.valignment="TOP" GridPane.vgrow="NEVER">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Text>
+                              <TextField disable="true" alignment="CENTER" prefHeight="33.0" prefWidth="100.0" GridPane.columnIndex="3" fx:id="D">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </TextField>
+                              <Text disable="true" strokeType="OUTSIDE" strokeWidth="0.0" text="E" textAlignment="CENTER" wrappingWidth="85.13671875" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.valignment="TOP" GridPane.vgrow="NEVER">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Text>
+                              <TextField disable="true" alignment="CENTER" prefHeight="33.0" prefWidth="100.0" GridPane.rowIndex="1" fx:id="E">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </TextField>
+                              <Text disable="true" strokeType="OUTSIDE" strokeWidth="0.0" text="F" textAlignment="CENTER" wrappingWidth="85.13671875" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.valignment="TOP" GridPane.vgrow="NEVER">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Text>
+                              <TextField disable="true" alignment="CENTER" prefHeight="33.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1" fx:id="F">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </TextField>
+                              <Text disable="true" strokeType="OUTSIDE" strokeWidth="0.0" text="G" textAlignment="CENTER" wrappingWidth="85.13671875" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.valignment="TOP" GridPane.vgrow="NEVER">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Text>
+                              <TextField disable="true" alignment="CENTER" prefHeight="33.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="1" fx:id="G">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </TextField>
+                              <Text disable="true" strokeType="OUTSIDE" strokeWidth="0.0" text="H" textAlignment="CENTER" wrappingWidth="85.13671875" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.valignment="TOP" GridPane.vgrow="NEVER">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Text>
+                              <TextField disable="true" alignment="CENTER" prefHeight="33.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="1" fx:id="H">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </TextField>
+                              <Text disable="true" strokeType="OUTSIDE" strokeWidth="0.0" text="I" textAlignment="CENTER" wrappingWidth="85.13671875" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.rowIndex="2" GridPane.valignment="TOP" GridPane.vgrow="NEVER">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Text>
+                              <TextField disable="true" alignment="CENTER" prefHeight="33.0" prefWidth="100.0" GridPane.rowIndex="2" fx:id="I">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </TextField>
+                              <Text disable="true" strokeType="OUTSIDE" strokeWidth="0.0" text="J" textAlignment="CENTER" wrappingWidth="85.13671875" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.rowIndex="2" GridPane.valignment="TOP" GridPane.vgrow="NEVER">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Text>
+                              <TextField disable="true" alignment="CENTER" prefHeight="33.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2" fx:id="J">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </TextField>
+                              <Text disable="true" strokeType="OUTSIDE" strokeWidth="0.0" text="K" textAlignment="CENTER" wrappingWidth="85.13671875" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.rowIndex="2" GridPane.valignment="TOP" GridPane.vgrow="NEVER">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Text>
+                              <TextField disable="true" alignment="CENTER" prefHeight="33.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="2" fx:id="K">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </TextField>
+                              <Text disable="true" strokeType="OUTSIDE" strokeWidth="0.0" text="L" textAlignment="CENTER" wrappingWidth="85.13671875" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.rowIndex="2" GridPane.valignment="TOP" GridPane.vgrow="NEVER">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Text>
+                              <TextField disable="true" alignment="CENTER" prefHeight="33.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="2" fx:id="L">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </TextField>
+                              <Text disable="true" strokeType="OUTSIDE" strokeWidth="0.0" text="Rozszerz" textAlignment="CENTER" wrappingWidth="85.13671875" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.rowIndex="3" GridPane.valignment="TOP" GridPane.vgrow="NEVER">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Text>
+                              <TextField disable="true" alignment="CENTER" prefHeight="33.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="3" fx:id="rozszerz">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </TextField>
+                              <Text disable="true" strokeType="OUTSIDE" strokeWidth="0.0" text="Ilość" textAlignment="CENTER" wrappingWidth="85.13671875" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.rowIndex="3" GridPane.valignment="TOP" GridPane.vgrow="NEVER">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Text>
+                              <TextField disable="true" alignment="CENTER" prefHeight="33.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="3" fx:id="count">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </TextField>
+
+                              <Text disable="true" strokeType="OUTSIDE" strokeWidth="0.0" text="MODEL" textAlignment="CENTER" wrappingWidth="88.900390625" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="TOP" />
+                              <Text disable="true" strokeType="OUTSIDE" strokeWidth="0.0" text="" textAlignment="CENTER" wrappingWidth="98.40625" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" fx:id="ModelAndType">
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                              </Text>
+                              <CheckBox disable="true" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" text="przetnij" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="TOP" fx:id="przetnijCheckBox">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets top="10.0" />
+                                 </padding>
+                              </CheckBox>
+                              <Button mnemonicParsing="false" text="Dodaj" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" fx:id="add"/>
+                           </children>
+                        </GridPane>
+                     </center>
+                  </BorderPane>
+               </children></AnchorPane>
+         </content>
+      </Tab>
+      <Tab text="DEV">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <TableView prefHeight="326.0" prefWidth="600.0" fx:id="generateList">
+                     <columns>
+                        <TableColumn prefWidth="60.0" text="Model" fx:id="Model"/>
+                        <TableColumn prefWidth="58.0" text="Typ" fx:id="Typ"/>
+                        <TableColumn prefWidth="40.0" text="A" fx:id="A1"/>
+                        <TableColumn prefWidth="40.0" text="B" fx:id="B1"/>
+                        <TableColumn prefWidth="40.0" text="C" fx:id="C1"/>
+                        <TableColumn prefWidth="40.0" text="D" fx:id="D1"/>
+                        <TableColumn prefWidth="40.0" text="E" fx:id="E1"/>
+                        <TableColumn prefWidth="40.0" text="F" fx:id="F1"/>
+                        <TableColumn prefWidth="40.0" text="G" fx:id="G1"/>
+                        <TableColumn prefWidth="40.0" text="H" fx:id="H1"/>
+                        <TableColumn prefWidth="40.0" text="I" fx:id="I1"/>
+                        <TableColumn prefWidth="40.0" text="J" fx:id="J1"/>
+                        <TableColumn prefWidth="40.0" text="K" fx:id="K1"/>
+                        <TableColumn prefWidth="40.0" text="L" fx:id="L1"/>
+                     </columns>
+                  </TableView>
+                  <Button layoutX="426.0" layoutY="330.0" mnemonicParsing="false" text="Wybierz Plik" textAlignment="CENTER" fx:id="chooseFile"/>
+                  <Button layoutX="528.0" layoutY="330.0" mnemonicParsing="false" text="Generuj" fx:id="generate"/>
+               </children></AnchorPane>
+         </content>
+      </Tab>
+   </tabs>
+</TabPane>
