@@ -17,7 +17,7 @@ public class EpsDocument {
 
     public synchronized void write(Writer writer) throws IOException {
         writer.write("%!PS-Adobe-3.0 EPSF-3.0\n");
-        writer.write("%%Creator: Cristian Swiatko v" + this.VERSION + ", kontakt@3mod.eu" + "\n");
+        writer.write("%%Creator: Mateusz Madej v" + this.VERSION + ", matmadproject@gmail.com" + "\n");
         writer.write("%%Title: " + this.title + "\n");
         writer.write("%%CreationDate: " + new Date() + "\n");
         writer.write("%%BoundingBox: 0 0 " + ((int) Math.ceil(Float.POSITIVE_INFINITY + 0)) + " " + ((int) Math.ceil(Float.POSITIVE_INFINITY + 0)) + "\n");

@@ -5,6 +5,8 @@ import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.TreeItem;
 
+import java.util.Objects;
+
 public class FurnitureModel extends TreeItem<FurnitureModel> {
 
     @FXML
@@ -104,5 +106,18 @@ public class FurnitureModel extends TreeItem<FurnitureModel> {
 
     public boolean getPrzetnij() {
         return this.przetnij;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof FurnitureModel)) return false;
+        FurnitureModel that = (FurnitureModel) o;
+        return Model.equals(that.Model) && Typ.equals(that.Typ);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(Model, Typ);
     }
 }

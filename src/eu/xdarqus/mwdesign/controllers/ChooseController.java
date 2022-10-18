@@ -3,10 +3,7 @@ package eu.xdarqus.mwdesign.controllers;
 import eu.xdarqus.mwdesign.MWDesign;
 import eu.xdarqus.mwdesign.calls.TreeViewCallImpl;
 import eu.xdarqus.mwdesign.epstwod.EPS2DGenerator;
-import eu.xdarqus.mwdesign.models.FurnitureModel;
-import eu.xdarqus.mwdesign.models.FurnitureModelSplitter;
-import eu.xdarqus.mwdesign.models.Type;
-import eu.xdarqus.mwdesign.models.ValueChangeListener;
+import eu.xdarqus.mwdesign.models.*;
 import javafx.beans.binding.Bindings;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -23,7 +20,9 @@ import javafx.util.Callback;
 
 import java.io.*;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class ChooseController implements Initializable {
@@ -294,6 +293,39 @@ public class ChooseController implements Initializable {
                 return row ;
             }
         });
+        modelList.setRowFactory(new Callback<TableView<FurnitureModel>, TableRow<FurnitureModel>>() {
+            @Override
+            public TableRow<FurnitureModel> call(TableView<FurnitureModel> tableView) {
+                final TableRow<FurnitureModel> row = new TableRow<>();
+                final ContextMenu contextMenu = new ContextMenu();
+                final MenuItem removeMenuItem = new MenuItem("Usuń");
+                final MenuItem editMenuItem = new MenuItem("Edytuj");
+                removeMenuItem.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                        modelList.getItems().remove(row.getItem());
+                    }
+                });
+                editMenuItem.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                        editModelButton.setDisable(false);
+                        updateModelValuesToEdit(row.getItem());
+                        rowIndex = row.getIndex();
+                    }
+                });
+                contextMenu.getItems().add(removeMenuItem);
+                contextMenu.getItems().add(editMenuItem);
+                // Set context menu on row, but use a binding to make it only show for non-empty rows:
+                row.contextMenuProperty().bind(
+                        Bindings.when(row.emptyProperty())
+                                .then((ContextMenu)null)
+                                .otherwise(contextMenu)
+                );
+                return row ;
+            }
+        });
+
         A.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue,
@@ -476,8 +508,16 @@ public class ChooseController implements Initializable {
 
     ObservableList<FurnitureModel> modelObservableList = FXCollections.observableArrayList();
     public void addNewModel(ActionEvent event) {
-        modelObservableList.add(getFurnitureModelFromForm());
+        FurnitureModel furnitureModel = getFurnitureModelFromForm();
+        modelObservableList.add(furnitureModel);
         updateModelList();
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(MWDesign.title);
+        alert.setHeaderText("Dodano nowy model");
+        alert.setContentText(furnitureModel.modelProperty().getValue() +
+                " | " + furnitureModel.typProperty().getValue());
+        alert.show();
     }
 
     public void saveToFile() {
@@ -511,7 +551,7 @@ public class ChooseController implements Initializable {
         alert.show();
     }
 
-    public void loadFromFile(ActionEvent event) {
+    public void loadFromFile() {
         FileChooser fileChooser = new FileChooser();
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Model List (*.mll)", "*.mll");
         fileChooser.getExtensionFilters().add(extFilter);
@@ -539,6 +579,7 @@ public class ChooseController implements Initializable {
         }
 
         updateModelList();
+        loadCorners(getCornerListToUpdate());
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(MWDesign.title);
@@ -624,5 +665,121 @@ public class ChooseController implements Initializable {
         columnJ.setCellValueFactory(cellData -> cellData.getValue().j1Property());
         columnK.setCellValueFactory(cellData -> cellData.getValue().k1Property());
         columnL.setCellValueFactory(cellData -> cellData.getValue().l1Property());
+    }
+
+    public List<Corner> getCornerList(){
+        List<Corner> corners = new ArrayList<>();
+        if(!modelObservableList.isEmpty())
+            for(FurnitureModel furnitureModel : modelObservableList){
+                corners.add(new Corner(furnitureModel.typProperty().getValue(), Type.valueOf(furnitureModel.modelProperty().getValue())));
+            }
+        return corners;
+    }
+    public TreeItem<String> getCornerListToUpdate(){
+        TreeItem<String> rootNode = new TreeItem("Modele");// ??
+        rootNode.setExpanded(true);
+        List<Corner> corners = getCornerList();
+        for (Corner corner : corners) {
+            TreeItem<String> empLeaf = new TreeItem(corner.getName());
+            empLeaf.setExpanded(false);
+            boolean found = false;
+            for (TreeItem<String> depNode : rootNode.getChildren()) {
+                if (depNode.getValue().contentEquals(corner.getType())){
+                    depNode.getChildren().add(empLeaf);
+                    found = true;
+                    break;
+                }
+            }
+            if (!found) {
+                TreeItem depNode = new TreeItem(corner.getType());
+                rootNode.getChildren().add(depNode);
+                depNode.getChildren().add(empLeaf);
+            }
+        }
+        return rootNode;
+    }
+
+    public void updateModelValues(String model, String type){
+        FurnitureModel selected = modelObservableList.stream().
+                filter(item -> item.typProperty().getValue().equals(type)
+                && item.modelProperty().getValue().equals(model))
+                .findFirst().orElse(null);
+        updateModelValues(selected);
+    }
+
+    public void updateModelValues(FurnitureModel furnitureModel){
+        if(furnitureModel != null){
+            A.setText(furnitureModel.a1Property().getValue());
+            B.setText(furnitureModel.b1Property().getValue());
+            C.setText(furnitureModel.c1Property().getValue());
+            D.setText(furnitureModel.d1Property().getValue());
+            E.setText(furnitureModel.e1Property().getValue());
+            F.setText(furnitureModel.f1Property().getValue());
+            G.setText(furnitureModel.g1Property().getValue());
+            H.setText(furnitureModel.h1Property().getValue());
+            I.setText(furnitureModel.i1Property().getValue());
+            J.setText(furnitureModel.j1Property().getValue());
+            K.setText(furnitureModel.k1Property().getValue());
+            L.setText(furnitureModel.l1Property().getValue());
+        }else{
+            A.setText("-1");
+            B.setText("-1");
+            C.setText("-1");
+            D.setText("-1");
+            E.setText("-1");
+            F.setText("-1");
+            G.setText("-1");
+            H.setText("-1");
+            I.setText("-1");
+            J.setText("-1");
+            K.setText("-1");
+            L.setText("-1");
+        }
+    }
+    public void updateModelValuesToEdit(FurnitureModel furnitureModel){
+        if(furnitureModel != null){
+            valueA.setText(furnitureModel.a1Property().getValue());
+            valueB.setText(furnitureModel.b1Property().getValue());
+            valueC.setText(furnitureModel.c1Property().getValue());
+            valueD.setText(furnitureModel.d1Property().getValue());
+            valueE.setText(furnitureModel.e1Property().getValue());
+            valueF.setText(furnitureModel.f1Property().getValue());
+            valueG.setText(furnitureModel.g1Property().getValue());
+            valueH.setText(furnitureModel.h1Property().getValue());
+            valueI.setText(furnitureModel.i1Property().getValue());
+            valueJ.setText(furnitureModel.j1Property().getValue());
+            valueK.setText(furnitureModel.k1Property().getValue());
+            valueL.setText(furnitureModel.l1Property().getValue());
+            nameModel.setText(furnitureModel.typProperty().getValue());
+            comboBoxModel.setValue(Type.valueOf(furnitureModel.modelProperty().getValue()));
+        }else{
+            valueA.setText("-1");
+            valueB.setText("-1");
+            valueC.setText("-1");
+            valueD.setText("-1");
+            valueE.setText("-1");
+            valueF.setText("-1");
+            valueG.setText("-1");
+            valueH.setText("-1");
+            valueI.setText("-1");
+            valueJ.setText("-1");
+            valueK.setText("-1");
+            valueL.setText("-1");
+        }
+    }
+    int rowIndex = -1;
+    public Button editModelButton;
+    public void editModel(ActionEvent event) {
+        FurnitureModel furnitureModel = getFurnitureModelFromForm();
+        modelObservableList.set(rowIndex,furnitureModel);
+        editModelButton.setDisable(true);
+        updateModelList();
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(MWDesign.title);
+        alert.setHeaderText("Edytowano model");
+        alert.setContentText(furnitureModel.modelProperty().getValue() +
+                " | " + furnitureModel.typProperty().getValue());
+        alert.show();
     }
 }

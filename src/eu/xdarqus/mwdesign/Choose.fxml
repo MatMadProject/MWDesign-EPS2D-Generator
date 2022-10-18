@@ -28,9 +28,6 @@
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
                   <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
-                     <left>
-                        <TreeView fx:id="modelsTreeView" prefHeight="664.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
-                     </left>
                      <center>
                         <GridPane BorderPane.alignment="CENTER">
                            <columnConstraints>
@@ -71,7 +68,7 @@
                                     <Font size="20.0" />
                                  </font>
                               </Text>
-                              <TextField fx:id="C" alignment="CENTER" disable="true" prefHeight="33.0" prefWidth="100.0" GridPane.columnIndex="2">
+                              <TextField fx:id="C" alignment="CENTER" disable="false" prefHeight="33.0" prefWidth="100.0" GridPane.columnIndex="2">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
@@ -81,7 +78,7 @@
                                     <Font size="20.0" />
                                  </font>
                               </Text>
-                              <TextField fx:id="D" alignment="CENTER" disable="true" prefHeight="33.0" prefWidth="100.0" GridPane.columnIndex="3">
+                              <TextField fx:id="D" alignment="CENTER" disable="false" prefHeight="33.0" prefWidth="100.0" GridPane.columnIndex="3">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
@@ -171,7 +168,7 @@
                                     <Font size="20.0" />
                                  </font>
                               </Text>
-                              <TextField fx:id="rozszerz" alignment="CENTER" disable="true" prefHeight="33.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                              <TextField fx:id="rozszerz" alignment="CENTER" disable="false" prefHeight="33.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
@@ -181,7 +178,7 @@
                                     <Font size="20.0" />
                                  </font>
                               </Text>
-                              <TextField fx:id="count" alignment="CENTER" disable="true" prefHeight="33.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                              <TextField fx:id="count" alignment="CENTER" disable="false" prefHeight="33.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
@@ -193,7 +190,7 @@
                                     <Font size="13.0" />
                                  </font>
                               </Text>
-                              <CheckBox fx:id="przetnijCheckBox" alignment="CENTER" contentDisplay="TOP" disable="true" mnemonicParsing="false" text="przetnij" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="TOP">
+                              <CheckBox fx:id="przetnijCheckBox" alignment="CENTER" contentDisplay="TOP" disable="false" mnemonicParsing="false" text="przetnij" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="TOP">
                                  <font>
                                     <Font size="11.0" />
                                  </font>
@@ -205,6 +202,14 @@
                            </children>
                         </GridPane>
                      </center>
+                     <left>
+                        <VBox prefHeight="375.0" prefWidth="200.0" spacing="2.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <TreeView fx:id="modelsTreeView" prefHeight="340.0" prefWidth="200.0" />
+                              <Button mnemonicParsing="false" onAction="#loadFromFile" prefHeight="25.0" prefWidth="200.0" text="Wczytaj modele z pliku" />
+                           </children>
+                        </VBox>
+                     </left>
                   </BorderPane>
                </children></AnchorPane>
          </content>
@@ -399,9 +404,10 @@
                         </HBox>
                         <HBox alignment="CENTER_LEFT" prefHeight="30.0" spacing="10.0">
                            <children>
-                              <Button mnemonicParsing="false" onAction="#addNewModel" prefWidth="160.0" text=" Dodaj nowy model" />
-                              <Button mnemonicParsing="false" onAction="#saveToFile" prefWidth="160.0" text="Zapisz do pliku" textAlignment="CENTER" />
-                              <Button mnemonicParsing="false" onAction="#loadFromFile" prefHeight="25.0" prefWidth="160.0" text="Wczytaj modele z pliku" textAlignment="CENTER" />
+                              <Button mnemonicParsing="false" onAction="#addNewModel" prefWidth="140.0" text=" Dodaj nowy model" />
+                              <Button mnemonicParsing="false" onAction="#saveToFile" prefWidth="140.0" text="Zapisz do pliku" textAlignment="CENTER" />
+                              <Button mnemonicParsing="false" onAction="#loadFromFile" prefHeight="25.0" prefWidth="140.0" text="Wczytaj modele z pliku" textAlignment="CENTER" />
+                              <Button fx:id="editModelButton"  disable="true" mnemonicParsing="false" onAction="#editModel" prefHeight="25.0" prefWidth="140.0" text="Edytuj model" textAlignment="CENTER" />
                            </children>
                         </HBox>
                      </children>
