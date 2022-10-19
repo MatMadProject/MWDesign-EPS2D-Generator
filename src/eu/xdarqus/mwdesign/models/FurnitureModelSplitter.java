@@ -25,26 +25,50 @@ public class FurnitureModelSplitter {
                 furnitureModel.i1Property().getValue() + SPLITTER +
                 furnitureModel.j1Property().getValue() + SPLITTER +
                 furnitureModel.k1Property().getValue() + SPLITTER +
-                furnitureModel.l1Property().getValue() + SPLITTER;
+                furnitureModel.l1Property().getValue() + SPLITTER +
+                furnitureModel.extendProperty().getValue() + SPLITTER +
+                furnitureModel.amountProperty().getValue() + SPLITTER;
         return stringBuilder;
     }
     public FurnitureModel fuseSplittedFurnitureModel(String splittedFurnitureModel){
         String [] tab = splittedFurnitureModel.split(SPLITTER);
-        return new FurnitureModel(
-            tab[0],
-                tab[1],
-                tab[2],
-                tab[3],
-                tab[4],
-                tab[5],
-                tab[6],
-                tab[7],
-                tab[8],
-                tab[9],
-                tab[10],
-                tab[11],
-                tab[12],
-                tab[13]
-        );
+        if(tab.length < 15)
+            return new FurnitureModel(
+                tab[0],
+                    tab[1],
+                    tab[2],
+                    tab[3],
+                    tab[4],
+                    tab[5],
+                    tab[6],
+                    tab[7],
+                    tab[8],
+                    tab[9],
+                    tab[10],
+                    tab[11],
+                    tab[12],
+                    tab[13],
+                    "0",
+                    "1"
+            );
+        else
+            return new FurnitureModel(
+                    tab[0],
+                    tab[1],
+                    tab[2],
+                    tab[3],
+                    tab[4],
+                    tab[5],
+                    tab[6],
+                    tab[7],
+                    tab[8],
+                    tab[9],
+                    tab[10],
+                    tab[11],
+                    tab[12],
+                    tab[13],
+                    tab[14],
+                    tab[15]
+            );
     }
 }

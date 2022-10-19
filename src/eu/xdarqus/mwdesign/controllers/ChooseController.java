@@ -4,6 +4,8 @@ import eu.xdarqus.mwdesign.MWDesign;
 import eu.xdarqus.mwdesign.calls.TreeViewCallImpl;
 import eu.xdarqus.mwdesign.epstwod.EPS2DGenerator;
 import eu.xdarqus.mwdesign.models.*;
+import eu.xdarqus.mwdesign.models.output.ApplicationRunningPath;
+import eu.xdarqus.mwdesign.models.output.ApplicationState;
 import javafx.beans.binding.Bindings;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -42,6 +44,9 @@ public class ChooseController implements Initializable {
     public TextField valueJ;
     public TextField valueK;
     public TextField valueL;
+    public TextField valueExtend;
+    public TextField valueAmount;
+
 
     @FXML
     private TreeView<String> modelsTreeView;
@@ -291,6 +296,11 @@ public class ChooseController implements Initializable {
                                 .otherwise(contextMenu)
                 );
                 return row ;
+            }
+        });
+        modelList.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                editModelButton.setDisable(true);
             }
         });
         modelList.setRowFactory(new Callback<TableView<FurnitureModel>, TableRow<FurnitureModel>>() {
@@ -551,6 +561,17 @@ public class ChooseController implements Initializable {
         alert.show();
     }
 
+    public void saveLastState() {
+        ApplicationState applicationState = new ApplicationState();
+        applicationState.saveApplicationState(modelObservableList);
+    }
+    public void loadLastState() {
+        ApplicationState applicationState = new ApplicationState();
+        applicationState.loadApplicationState(modelObservableList);
+        updateModelList();
+        loadCorners(getCornerListToUpdate());
+    }
+
     public void loadFromFile() {
         FileChooser fileChooser = new FileChooser();
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Model List (*.mll)", "*.mll");
@@ -614,8 +635,10 @@ public class ChooseController implements Initializable {
         String j = valueJ.getText();
         String k = valueK.getText();
         String l = valueL.getText();
+        String extend = valueExtend.getText();
+        String amount = valueAmount.getText();
 
-        FurnitureModel furnitureModel = new FurnitureModel(
+        return new FurnitureModel(
                 model,
                 name,
                 a,
@@ -629,10 +652,10 @@ public class ChooseController implements Initializable {
                 i,
                 j,
                 k,
-                l
+                l,
+                extend,
+                amount
         );
-
-        return furnitureModel;
     }
 
     private void setValueTextFieldsListener(){
@@ -648,6 +671,8 @@ public class ChooseController implements Initializable {
         valueJ.textProperty().addListener(new ValueChangeListener(6));
         valueK.textProperty().addListener(new ValueChangeListener(6));
         valueL.textProperty().addListener(new ValueChangeListener(6));
+        valueExtend.textProperty().addListener(new ValueChangeListener(6));
+        valueAmount.textProperty().addListener(new ValueChangeListener(6));
     }
 
     private void setCellValueFactoryOfModelList(){
@@ -721,6 +746,8 @@ public class ChooseController implements Initializable {
             J.setText(furnitureModel.j1Property().getValue());
             K.setText(furnitureModel.k1Property().getValue());
             L.setText(furnitureModel.l1Property().getValue());
+            rozszerz.setText(furnitureModel.extendProperty().getValue());
+            count.setText(furnitureModel.amountProperty().getValue());
         }else{
             A.setText("-1");
             B.setText("-1");
@@ -734,6 +761,8 @@ public class ChooseController implements Initializable {
             J.setText("-1");
             K.setText("-1");
             L.setText("-1");
+            rozszerz.setText("-1");
+            count.setText("-1");
         }
     }
     public void updateModelValuesToEdit(FurnitureModel furnitureModel){
@@ -752,6 +781,8 @@ public class ChooseController implements Initializable {
             valueL.setText(furnitureModel.l1Property().getValue());
             nameModel.setText(furnitureModel.typProperty().getValue());
             comboBoxModel.setValue(Type.valueOf(furnitureModel.modelProperty().getValue()));
+            valueExtend.setText(furnitureModel.extendProperty().getValue());
+            valueAmount.setText(furnitureModel.amountProperty().getValue());
         }else{
             valueA.setText("-1");
             valueB.setText("-1");

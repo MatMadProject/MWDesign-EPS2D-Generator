@@ -268,7 +268,27 @@
                         <HBox alignment="CENTER_LEFT" prefHeight="30.0" spacing="10.0">
                            <children>
                               <ComboBox fx:id="comboBoxModel" prefWidth="150.0" promptText="Model [NK1, NK2 ...]" />
-                              <TextField fx:id="nameModel" prefHeight="25.0" prefWidth="434.0" promptText="Nazwa" />
+                              <TextField fx:id="nameModel" prefHeight="25.0" prefWidth="200.0" promptText="Nazwa" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefWidth="48.0" text="Rozszerz">
+                                 <font>
+                                    <Font name="System Bold" size="10.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="valueExtend" alignment="CENTER" prefHeight="25.0" prefWidth="48.0" text="0">
+                                 <font>
+                                    <Font size="10.0" />
+                                 </font>
+                              </TextField>
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefWidth="48.0" text="Ilość">
+                                 <font>
+                                    <Font name="System Bold" size="10.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="valueAmount" alignment="CENTER" prefHeight="25.0" prefWidth="48.0" text="1">
+                                 <font>
+                                    <Font size="10.0" />
+                                 </font>
+                              </TextField>
                            </children>
                            <VBox.margin>
                               <Insets />
@@ -407,7 +427,7 @@
                               <Button mnemonicParsing="false" onAction="#addNewModel" prefWidth="140.0" text=" Dodaj nowy model" />
                               <Button mnemonicParsing="false" onAction="#saveToFile" prefWidth="140.0" text="Zapisz do pliku" textAlignment="CENTER" />
                               <Button mnemonicParsing="false" onAction="#loadFromFile" prefHeight="25.0" prefWidth="140.0" text="Wczytaj modele z pliku" textAlignment="CENTER" />
-                              <Button fx:id="editModelButton"  disable="true" mnemonicParsing="false" onAction="#editModel" prefHeight="25.0" prefWidth="140.0" text="Edytuj model" textAlignment="CENTER" />
+                              <Button fx:id="editModelButton" disable="true" mnemonicParsing="false" onAction="#editModel" prefHeight="25.0" prefWidth="140.0" text="Edytuj model" textAlignment="CENTER" />
                            </children>
                         </HBox>
                      </children>
