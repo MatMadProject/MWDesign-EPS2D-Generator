@@ -21,7 +21,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.xdarqus.mwdesign.controllers.ChooseController">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.xdarqus.mwdesign.controllers.ChooseController">
    <tabs>
       <Tab text="Choose">
          <content>
@@ -48,7 +48,7 @@
                                     <Font size="20.0" />
                                  </font>
                               </Text>
-                              <TextField fx:id="A" alignment="CENTER" disable="true" prefHeight="44.0" prefWidth="33.0">
+                              <TextField fx:id="A" alignment="CENTER" disable="false" prefHeight="44.0" prefWidth="33.0">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
@@ -58,7 +58,7 @@
                                     <Font size="20.0" />
                                  </font>
                               </Text>
-                              <TextField fx:id="B" alignment="CENTER" disable="true" layoutX="10.0" layoutY="35.0" prefHeight="33.0" prefWidth="100.0" GridPane.columnIndex="1">
+                              <TextField fx:id="B" alignment="CENTER" disable="false" layoutX="10.0" layoutY="35.0" prefHeight="33.0" prefWidth="100.0" GridPane.columnIndex="1">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
@@ -88,7 +88,7 @@
                                     <Font size="20.0" />
                                  </font>
                               </Text>
-                              <TextField fx:id="E" alignment="CENTER" disable="true" prefHeight="33.0" prefWidth="100.0" GridPane.rowIndex="1">
+                              <TextField fx:id="E" alignment="CENTER" disable="false" prefHeight="33.0" prefWidth="100.0" GridPane.rowIndex="1">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
@@ -98,7 +98,7 @@
                                     <Font size="20.0" />
                                  </font>
                               </Text>
-                              <TextField fx:id="F" alignment="CENTER" disable="true" prefHeight="33.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                              <TextField fx:id="F" alignment="CENTER" disable="false" prefHeight="33.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
@@ -108,7 +108,7 @@
                                     <Font size="20.0" />
                                  </font>
                               </Text>
-                              <TextField fx:id="G" alignment="CENTER" disable="true" prefHeight="33.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                              <TextField fx:id="G" alignment="CENTER" disable="false" prefHeight="33.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
@@ -118,7 +118,7 @@
                                     <Font size="20.0" />
                                  </font>
                               </Text>
-                              <TextField fx:id="H" alignment="CENTER" disable="true" prefHeight="33.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                              <TextField fx:id="H" alignment="CENTER" disable="false" prefHeight="33.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
@@ -128,7 +128,7 @@
                                     <Font size="20.0" />
                                  </font>
                               </Text>
-                              <TextField fx:id="I" alignment="CENTER" disable="true" prefHeight="33.0" prefWidth="100.0" GridPane.rowIndex="2">
+                              <TextField fx:id="I" alignment="CENTER" disable="false" prefHeight="33.0" prefWidth="100.0" GridPane.rowIndex="2">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
@@ -138,7 +138,7 @@
                                     <Font size="20.0" />
                                  </font>
                               </Text>
-                              <TextField fx:id="J" alignment="CENTER" disable="true" prefHeight="33.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                              <TextField fx:id="J" alignment="CENTER" disable="false" prefHeight="33.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
@@ -148,7 +148,7 @@
                                     <Font size="20.0" />
                                  </font>
                               </Text>
-                              <TextField fx:id="K" alignment="CENTER" disable="true" prefHeight="33.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                              <TextField fx:id="K" alignment="CENTER" disable="false" prefHeight="33.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
@@ -158,7 +158,7 @@
                                     <Font size="20.0" />
                                  </font>
                               </Text>
-                              <TextField fx:id="L" alignment="CENTER" disable="true" prefHeight="33.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                              <TextField fx:id="L" alignment="CENTER" disable="false" prefHeight="33.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
                                  <font>
                                     <Font size="20.0" />
                                  </font>

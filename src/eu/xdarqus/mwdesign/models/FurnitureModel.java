@@ -17,7 +17,12 @@ public class FurnitureModel extends TreeItem<FurnitureModel> {
     boolean przetnij = false;
 
     public FurnitureModel(String Model, String Typ, String A1, String B1, String C1, String D1, String E1, String F1, String G1, String H1, String I1, String J1, String K1, String L1, int rozszerz, boolean przetnij) {
-        this(Model,Typ,A1,B1,C1,D1,E1,F1,G1,H1,I1,J1,K1,L1);
+        this(Model,Typ,
+                String.valueOf(Integer.parseInt(A1)+rozszerz),
+                String.valueOf(Integer.parseInt(B1)+rozszerz),
+                String.valueOf(Integer.parseInt(C1)+rozszerz),
+                String.valueOf(Integer.parseInt(D1)+rozszerz),
+                E1,F1,G1,H1,I1,J1,K1,L1);
         this.przetnij = przetnij;
     }
     public FurnitureModel(String Model, String Typ, String A1, String B1, String C1, String D1, String E1, String F1,
@@ -30,10 +35,10 @@ public class FurnitureModel extends TreeItem<FurnitureModel> {
     public FurnitureModel(String Model, String Typ, String A1, String B1, String C1, String D1, String E1, String F1, String G1, String H1, String I1, String J1, String K1, String L1) {
         this.Model = new SimpleStringProperty(Model);
         this.Typ = new SimpleStringProperty(Typ);
-        this.A1 = new SimpleStringProperty(String.valueOf(Integer.parseInt(A1)));
-        this.B1 = new SimpleStringProperty(String.valueOf(Integer.parseInt(B1)));
-        this.C1 = new SimpleStringProperty(String.valueOf(Integer.parseInt(C1)));
-        this.D1 = new SimpleStringProperty(String.valueOf(Integer.parseInt(D1)));
+        this.A1 = new SimpleStringProperty(A1);
+        this.B1 = new SimpleStringProperty(B1);
+        this.C1 = new SimpleStringProperty(C1);
+        this.D1 = new SimpleStringProperty(D1);
         this.E1 = new SimpleStringProperty(E1);
         this.F1 = new SimpleStringProperty(F1);
         this.G1 = new SimpleStringProperty(G1);

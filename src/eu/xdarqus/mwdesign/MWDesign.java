@@ -12,9 +12,8 @@ import java.io.IOException;
 
 public class MWDesign extends Application {
 
-    public static String title = "MWDesign v1.1.0";
+    public static String title = "MWDesign v1.2.1";
 
-    private TabPane mainLayout;
     public static ChooseController controller;
     public static Stage stage;
 
@@ -27,10 +26,10 @@ public class MWDesign extends Application {
         MWDesign.stage = stage;
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(MWDesign.class.getResource("Choose.fxml"));
-        mainLayout = loader.load();
+        TabPane mainLayout = loader.load();
         Scene scene = new Scene(mainLayout);
 
-        controller = loader.<ChooseController>getController();
+        controller = loader.getController();
         controller.loadListeners();
         controller.loadLastState();
 
@@ -38,8 +37,6 @@ public class MWDesign extends Application {
         stage.setScene(scene);
         stage.show();
 
-        stage.setOnCloseRequest((event) -> {
-            controller.saveLastState();
-        });
+        stage.setOnCloseRequest((event) -> controller.saveLastState());
     }
 }
